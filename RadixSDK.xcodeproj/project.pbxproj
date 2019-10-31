@@ -224,7 +224,6 @@
 		E67A715421FBC65800F4B2D0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67A715321FBC65800F4B2D0 /* String+Extensions.swift */; };
 		E67A8CC5235635AB00206E33 /* ProofOfWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67A8CC3235635AB00206E33 /* ProofOfWorkTests.swift */; };
 		E67A8CC6235635AB00206E33 /* NumberOfLeadingZeroBitsInDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E67A8CC4235635AB00206E33 /* NumberOfLeadingZeroBitsInDataTests.swift */; };
-		E685BBBD22BA5F5800563B1A /* BitcoinKit.framework in Copy Carthage Frameworks */ = {isa = PBXBuildFile; fileRef = E6FB03CB21EC996E002CE331 /* BitcoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E68727FE2343BC6400FF4FCE /* Locale+DecimalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E68727FD2343BC6400FF4FCE /* Locale+DecimalSeparator.swift */; };
 		E689DB78225F24DA00340CF3 /* PrivateKey+ExpressilbleByIntegerLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = E689DB76225F227800340CF3 /* PrivateKey+ExpressilbleByIntegerLiteral.swift */; };
 		E689DB7D225F61BF00340CF3 /* DefaultHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E689DB7C225F61BF00340CF3 /* DefaultHTTPClient.swift */; };
@@ -486,7 +485,6 @@
 		E6F5484222771E7100EE6311 /* CreateTokenActionToParticleGroupsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5484122771E7100EE6311 /* CreateTokenActionToParticleGroupsMapper.swift */; };
 		E6F5484522771E9A00EE6311 /* TransferTokenActionToParticleGroupsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5484422771E9A00EE6311 /* TransferTokenActionToParticleGroupsMapper.swift */; };
 		E6F5484722771EC800EE6311 /* DefaultTransferTokenActionToParticleGroupsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F5484622771EC800EE6311 /* DefaultTransferTokenActionToParticleGroupsMapper.swift */; };
-		E6FB03CC21EC996E002CE331 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FB03CB21EC996E002CE331 /* BitcoinKit.framework */; };
 		E6FB03D721ECE4EC002CE331 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FB03CF21EC9987002CE331 /* BigInt.framework */; };
 		E6FB03D821ECE4EC002CE331 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FB03CB21EC996E002CE331 /* BitcoinKit.framework */; };
 		E6FB03D921ECE4EC002CE331 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6FB03D521ECE4C3002CE331 /* CryptoSwift.framework */; };
@@ -547,7 +545,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E685BBBD22BA5F5800563B1A /* BitcoinKit.framework in Copy Carthage Frameworks */,
 			);
 			name = "Copy Carthage Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1074,7 +1071,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6FB03CC21EC996E002CE331 /* BitcoinKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1106,18 @@
 				48E1A5F3232130F8009A34C6 /* HDWallet.swift */,
 			);
 			path = HierarchicalDeterministicWallet;
+			sourceTree = "<group>";
+		};
+		5B74DBA2236B6D37006C606F /* RadixSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E689DB86225F77C600340CF3 /* Stack */,
+				E6D325AE21EE488600851F4E /* Extensions */,
+				E620AB4521E785D600B36EC2 /* SupportingFiles */,
+				E6EFD6C0234F7CE200B7387B /* CombineBridge.swift */,
+				E68DE4A52352357800F1E7A0 /* PublisherPipeOperator.swift */,
+			);
+			path = RadixSDK;
 			sourceTree = "<group>";
 		};
 		E6025400225CC3CD004B2F94 /* UniverseConfig */ = {
@@ -1463,11 +1471,7 @@
 		E620AB4021E783F600B36EC2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				E689DB86225F77C600340CF3 /* Stack */,
-				E6D325AE21EE488600851F4E /* Extensions */,
-				E620AB4521E785D600B36EC2 /* SupportingFiles */,
-				E6EFD6C0234F7CE200B7387B /* CombineBridge.swift */,
-				E68DE4A52352357800F1E7A0 /* PublisherPipeOperator.swift */,
+				5B74DBA2236B6D37006C606F /* RadixSDK */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -4250,7 +4254,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Sources/SupportingFiles/RadixSDK-Info.plist";
+				INFOPLIST_FILE = "Sources/RadixSDK/SupportingFiles/RadixSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4288,7 +4292,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Sources/SupportingFiles/RadixSDK-Info.plist";
+				INFOPLIST_FILE = "Sources/RadixSDK/SupportingFiles/RadixSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

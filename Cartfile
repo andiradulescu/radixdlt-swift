@@ -1,2 +1,0 @@
-# Goal is to remove Carthage completely, but for now BitcoinKit only builds using Carthage
-github "yenom/BitcoinKit"

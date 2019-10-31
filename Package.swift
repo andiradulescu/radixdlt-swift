@@ -9,6 +9,7 @@ import PackageDescription
 
 let package = Package(
     name: "RadixSDK",
+    platforms: [.iOS(.v13)],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
@@ -17,7 +18,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-log", from: "1.1.1"),
+//        .package(url: "https://github.com/apple/swift-log", from: "1.1.1"),
 
         .package(url: "https://github.com/attaswift/BigInt", from: "5.0.0"),
 
@@ -27,7 +28,7 @@ let package = Package(
         .package(url: "https://github.com/myfreeweb/SwiftCBOR", from: "0.4.3"),
 
         // TODO: Remove Alamofire, not so heavily used anyway
-        .package(url: "https://github.com/Alamofire/Alamofire", .revision("c1d14588e5558a3669fd03510d135d88c5109069")),
+        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.0.0-rc.3"),
 
         // TODO: Remove CryptoSwift in favour of Apples `CryptoKit` (new in iOS 13), read more:
         // https://developer.apple.com/documentation/cryptokit/sha256
@@ -40,22 +41,22 @@ let package = Package(
 
         // TODO: Add BitcoinKit via SPM instead of Carthage (currently used), when proper SPM support is fixed
         // track this issue: https://github.com/yenom/BitcoinKit/issues/224
-        // .package(url: "https://github.com/yenom/BitcoinKit", from: "1.1.0"),
+         .package(url: "https://github.com/yenom/BitcoinKit", from: "1.1.0"),
 
         // ~~~===***{{{ TEST ONLY DEPENDENCIES }}}***===~~~
-        .package(url: "https://github.com/birdrides/mockingbird", from: "0.7.0"),
+        // .package(url: "https://github.com/birdrides/mockingbird", from: "0.7.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "RadixSDK iOS",
-            dependencies: ["BigInt", "SwiftCBOR", "Alamofire", "CryptoSwift", "Starscream"],
+            name: "RadixSDK",
+            dependencies: ["BigInt", "SwiftCBOR", "Alamofire", "CryptoSwift", "Starscream", "BitcoinKit"],
             path: "Sources"
         ),
         .testTarget(
             name: "RadixSDK iOS Tests",
-            dependencies: ["RadixSDK", "BigInt", "SwiftCBOR", "Alamofire", "CryptoSwift", "Starscream", "Mockingbird"],
+            dependencies: ["RadixSDK"/*, "Mockingbird"*/],
             path: "Tests"
         ),
     ]
