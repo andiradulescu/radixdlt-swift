@@ -27,7 +27,9 @@ import CryptoSwift
 
 public struct SHA256Hasher: SHA256Hashing {
     public init() {}
-    public func sha256(of data: Data) -> Data {
-        return data.sha256()
+    public func sha256(of data: Data) -> [Byte] {
+        let zero = [Byte](data)
+        let once = CryptoSwift.SHA2(variant: .sha256).calculate(for: zero)
+        return once
     }
 }

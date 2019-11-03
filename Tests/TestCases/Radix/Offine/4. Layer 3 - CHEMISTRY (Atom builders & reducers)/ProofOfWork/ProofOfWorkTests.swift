@@ -77,10 +77,32 @@ class ProofOfWorkTest: XCTestCase {
                 expectedNonce: vector.expectedResultingNonce,
                 magic: vector.magic,
                 seed: vector.seed,
-                sha256TwiceHasher: SHA256TwiceHasher()
+                sha256TwiceHasher: CryptoKitSha256TwiceHasher()
             )
         }
         vectorsForHighNonce.forEach(test(vector:))
+    }
+    
+    func testSlowestVectorWithCryptoKit() {
+        let vector = vectorsForHighNonce[0]
+        doTest(
+            zeros: vector.zeros,
+            expectedNonce: vector.expectedResultingNonce,
+            magic: vector.magic,
+            seed: vector.seed,
+            sha256TwiceHasher: CryptoKitSha256TwiceHasher()
+        )
+    }
+    
+    func testSlowestVectorWithCryptoSwift() {
+        let vector = vectorsForHighNonce[0]
+        doTest(
+            zeros: vector.zeros,
+            expectedNonce: vector.expectedResultingNonce,
+            magic: vector.magic,
+            seed: vector.seed,
+            sha256TwiceHasher: SHA256TwiceHasher()
+        )
     }
 }
 
@@ -90,7 +112,7 @@ private extension ProofOfWorkTest {
         expectedNonce: Nonce,
         magic overridingMagic: Magic? = nil,
         seed overridingSeed: HexString? = nil,
-        sha256TwiceHasher: SHA256TwiceHashing = SHA256TwiceHasher()
+        sha256TwiceHasher: SHA256TwiceHashing = CryptoKitSha256TwiceHasher()
     ) {
     
         let magicUsed = overridingMagic ?? magic

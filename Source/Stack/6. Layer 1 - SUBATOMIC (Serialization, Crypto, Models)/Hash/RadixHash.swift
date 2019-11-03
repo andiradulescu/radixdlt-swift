@@ -27,8 +27,8 @@ import CryptoSwift
 
 public struct RadixHasher: Hashing {
     public init() {}
-    public func hash(data: Data) -> Data {
-        return RadixHash(unhashedData: data).asData
+    public func hash(data: Data) -> [Byte] {
+        return RadixHash(unhashedData: data).bytes
     }
 }
 
@@ -42,11 +42,11 @@ public struct RadixHash:
     CustomStringConvertible {
 // swiftlint:enable colon
 
-    private let data: Data
+    public let bytes: [Byte]
     
     // MARK: - Designated initializer
-    public init(unhashedData: DataConvertible, hashedBy hasher: Hashing = SHA256TwiceHasher()) {
-        self.data = hasher.hash(data: unhashedData.asData)
+    public init(unhashedData: DataConvertible, hashedBy hasher: Hashing = CryptoKitSha256TwiceHasher()) {
+        self.bytes = hasher.hash(data: unhashedData.asData)
     }
 }
 
@@ -61,21 +61,21 @@ public extension RadixHash {
 public extension RadixHash {
     typealias Element = Byte
     var elements: [Element] {
-        return data.bytes
+        return bytes
     }
 }
 
 // MARK: - DataConvertible
 public extension RadixHash {
     var asData: Data {
-        return data
+        return Data(bytes)
     }
 }
 
 // MARK: - Hashable
 public extension RadixHash {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(data)
+        hasher.combine(bytes)
     }
 }
 
@@ -83,7 +83,7 @@ public extension RadixHash {
     
     func toEUID() -> EUID {
         do {
-            return try EUID(data: data.prefix(EUID.length))
+            return try EUID(data: self.asData.prefix(EUID.length))
         } catch {
             incorrectImplementationShouldAlwaysBeAble(to: "Create `EUID` (hash id) from `RadixHash`", error)
         }

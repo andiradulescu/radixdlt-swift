@@ -32,7 +32,7 @@ public final class DefaultProofOfWorkWorker: ProofOfWorkWorker {
 
     public init(
         targetNumberOfLeadingZeros: ProofOfWork.NumberOfLeadingZeros = .default,
-        sha256TwiceHasher: SHA256TwiceHashing = SHA256TwiceHasher()
+        sha256TwiceHasher: SHA256TwiceHashing = CryptoKitSha256TwiceHasher()
     ) {
         self.targetNumberOfLeadingZeros = targetNumberOfLeadingZeros
         self.sha256TwiceHasher = sha256TwiceHasher

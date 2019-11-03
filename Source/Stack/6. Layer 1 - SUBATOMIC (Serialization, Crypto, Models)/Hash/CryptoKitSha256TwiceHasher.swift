@@ -27,10 +27,25 @@ import CryptoKit
 
 public struct CryptoKitSha256TwiceHasher: SHA256TwiceHashing {
     public init() {}
-    public func sha256Twice(of data: Data) -> Data {
-        let once = SHA256.hash(data: data).asData
-        let twice = SHA256.hash(data: once).asData
-        return twice
+    public func sha256Twice(of data: Data) -> [Byte] {
+        var hasher1 = SHA256()
+        data.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
+            hasher1.update(bufferPointer: bufferPointer)
+        }
+        let digest1 = hasher1.finalize()
+        
+        var hasher2 = SHA256()
+        digest1.withUnsafeBytes { (bufferPointer: UnsafeRawBufferPointer) in
+            hasher2.update(bufferPointer: bufferPointer)
+        }
+        let digest2 = hasher2.finalize()
+        
+        var data: [UInt8] = []
+        digest2.withUnsafeBytes {
+            data.append(contentsOf: $0)
+        }
+                
+        return data
     }
 }
 
