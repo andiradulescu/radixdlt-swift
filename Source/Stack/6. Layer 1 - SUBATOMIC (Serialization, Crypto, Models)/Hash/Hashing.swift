@@ -40,6 +40,7 @@ public extension SHA256Hashing {
 
 public protocol SHA256TwiceHashing: Hashing {
     func sha256Twice(of data: Data) -> Data
+    var nameOfHasher: String { get }
 }
 
 public extension SHA256TwiceHashing {

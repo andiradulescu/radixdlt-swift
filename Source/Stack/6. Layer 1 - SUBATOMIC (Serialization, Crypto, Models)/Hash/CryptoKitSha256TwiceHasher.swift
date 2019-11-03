@@ -32,5 +32,6 @@ public struct CryptoKitSha256TwiceHasher: SHA256TwiceHashing {
         let twice = SHA256.hash(data: once).asData
         return twice
     }
+    public var nameOfHasher: String { "CryptoKit" }
 }
 

@@ -28,7 +28,7 @@ import SwiftyBeaver
 internal let log: SwiftyBeaver.Type = {
     let log = SwiftyBeaver.self
     let console = ConsoleDestination()
-    console.minLevel = .info
+    console.minLevel = .warning //.info
     log.addDestination(console)
     return log
 }()

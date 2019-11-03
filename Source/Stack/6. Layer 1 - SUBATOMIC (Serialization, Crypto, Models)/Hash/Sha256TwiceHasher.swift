@@ -30,4 +30,5 @@ public struct SHA256TwiceHasher: SHA256TwiceHashing {
     public func sha256Twice(of data: Data) -> Data {
         return data.sha256().sha256()
     }
+    public var nameOfHasher: String { "CryptoSwift" }
 }

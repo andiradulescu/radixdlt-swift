@@ -80,7 +80,7 @@ public extension DefaultProofOfWorkWorker {
 }
 
 // MARK: - Internal (for testing, ought to be private)
-internal extension DefaultProofOfWorkWorker {
+public extension DefaultProofOfWorkWorker {
     func doWork(
         seed: Data,
         magic: Magic,
