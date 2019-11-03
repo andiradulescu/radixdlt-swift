@@ -35,7 +35,7 @@ public final class Signer {
 
 public extension Signer {
 
-    static func sign(hashedData: Data, privateKey: PrivateKey) throws -> Signature {
+    static func sign(hashedData: [Byte], privateKey: PrivateKey) throws -> Signature {
         let message = try SignableMessage(data: hashedData)
         return try sign(message, privateKey: privateKey)
     }

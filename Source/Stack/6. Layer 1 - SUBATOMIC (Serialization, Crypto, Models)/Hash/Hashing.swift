@@ -25,36 +25,36 @@
 import Foundation
 
 public protocol Hashing {
-    func hash(data: Data) -> Data
+    func hash(data: Data) -> [Byte]
 }
 
 public protocol SHA256Hashing: Hashing {
-    func sha256(of data: Data) -> Data
+    func sha256(of data: Data) -> [Byte]
 }
 
 public extension SHA256Hashing {
-    func hash(data: Data) -> Data {
+    func hash(data: Data) -> [Byte] {
         return sha256(of: data)
     }
 }
 
 public protocol SHA256TwiceHashing: Hashing {
-    func sha256Twice(of data: Data) -> Data
+    func sha256Twice(of data: Data) -> [Byte]
     var nameOfHasher: String { get }
 }
 
 public extension SHA256TwiceHashing {
-    func hash(data: Data) -> Data {
+    func hash(data: Data) -> [Byte] {
         return sha256Twice(of: data)
     }
 }
 
 public protocol SHA512TwiceHashing: Hashing {
-    func sha512Twice(of data: Data) -> Data
+    func sha512Twice(of data: Data) -> [Byte]
 }
 
 public extension SHA512TwiceHashing {
-    func hash(data: Data) -> Data {
+    func hash(data: Data) -> [Byte] {
         return sha512Twice(of: data)
     }
 }

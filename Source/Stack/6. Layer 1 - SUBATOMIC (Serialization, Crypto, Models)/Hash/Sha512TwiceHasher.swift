@@ -27,8 +27,11 @@ import CryptoSwift
 
 public struct SHA512TwiceHasher: SHA512TwiceHashing {
     public init() {}
-    public func sha512Twice(of data: Data) -> Data {
-        return data.sha512().sha512()
+    public func sha512Twice(of data: Data) -> [Byte] {
+        let zero = [Byte](data)
+        let once = CryptoSwift.SHA2(variant: .sha512).calculate(for: zero)
+        let twice = CryptoSwift.SHA2(variant: .sha512).calculate(for: once)
+        return twice
     }
 }
 

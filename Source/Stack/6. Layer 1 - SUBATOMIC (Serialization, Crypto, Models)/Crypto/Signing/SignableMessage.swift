@@ -44,6 +44,11 @@ public struct SignableMessage:
         self.unsignedData = unsignedData
     }
     
+    public init(data unsignedData: [Byte]) throws {
+        try SignableMessage.validateLength(of: unsignedData)
+        self.unsignedData = Data(unsignedData)
+    }
+    
     public init(unhashed dataConvertible: DataConvertible, hashedBy hasher: Hashing = RadixHasher()) throws {
         let unhashed = dataConvertible.asData
         let hashed = hasher.hash(data: unhashed)
